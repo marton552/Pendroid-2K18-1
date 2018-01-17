@@ -11,18 +11,21 @@ A játékban legyenek bossok amik random jöhetnek. Ezek a bossok külön elemek
 Szabad feladatok:
 
 Poweruppok: 
-- [ ] Tűzerősség növelése 50%-al
+- [ ] Tűzerősség növelése 20%-al
+- [ ] Lővés gyorsaság növelése 30%-al
 - [ ] Élet 50%-ának pajzsá tétele. (pajzs = kétszer akkora sebzést tud befogadni és tud regenerálódni lassan)
-- [ ] Követős rakétál
+- [ ] Követős rakéták
 - [ ] Mini űrhajó - Pew (Pew = autómatikusan lő időközönként az ellenfélre, és melletted marad. Sebezhetetlen)
 - [ ] Mini űrhajó - Doc (Doc = olyan mint a Pew, csak nem lő hanem az életedet gyógyítja lassan)
 - [ ] A bevitt sebzések arányában tölten vissza az életed
+- [ ] Egy pajzs ami egy bármekkora sebzést felfog, viszont utána eltűnik és 5 másodperc a pajzs regenerációja
 
 Használható képességek: (ezek mondjuk a bal alsó sarokba lennének, rá kell nyomni hogy aktiválódjon. Ugyanúgy a Poweruppoknál lehet majd választani őket)
 - [ ] Laser
 - [ ] Tűzerő megsokszorozása
 - [ ] Egyszerre 5-10 követős rakéta
 - [ ] Teljes sebzésvédelem pár másodpercig
+- [ ] Ha benyomja akkor "elkábitja az ellenfeleket, vagyis azok nem tudnak lőni
 
 Bossok:
 
@@ -30,7 +33,10 @@ Bossok:
 Személyreszóló feladatok:
 
 István:
-- [ ] kb minden okcs
+- [ ] Alap mozgás
+- [ ] Lövés
+- [ ] Ellenfelek időközönkénti érkezése
+- [ ] "mesterséges inteligencia" vagyis hogy az ellenfelek PRÓBÁLNAK a játékosra lőni
 - [ ] Martin bugjainak fixelése
 - [ ] Github használata
 
