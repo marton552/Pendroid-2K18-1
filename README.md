@@ -19,6 +19,8 @@ Poweruppok:
 - [ ] Mini űrhajó - Doc (Doc = olyan mint a Pew, csak nem lő hanem az életedet gyógyítja lassan)
 - [ ] A bevitt sebzések arányában tölten vissza az életed
 - [ ] Egy pajzs ami egy bármekkora sebzést felfog, viszont utána eltűnik és 5 másodperc a pajzs regenerációja
+- [ ] A lövedék nem áll meg az eltalált ellenfélnél hanem "átmegy rajta"
+- [ ] passzívan van egy gyenge lézere ami közvetlen előre lő
 
 Használható képességek: (ezek mondjuk a bal alsó sarokba lennének, rá kell nyomni hogy aktiválódjon. Ugyanúgy a Poweruppoknál lehet majd választani őket)
 - [ ] Laser
@@ -43,11 +45,14 @@ István:
 Martin:
 - [ ] Menü
 - [ ] Bossok
+- [ ] Poweruppok beprogramozása
 
 Bendzsi:
-- [ ] 3D grafika
+- [ ] 3D grafika (4 ellenfél 2 boss Doc-Pew)
+- [ ] Ha van idő akkor pénisz űrhajó
 
 Márton:
 - [ ] 2D grafika (poweruppok)
 - [ ] 2D animációk
+- [ ] 2D háttér elemek
 - [ ] Zene és hangok
