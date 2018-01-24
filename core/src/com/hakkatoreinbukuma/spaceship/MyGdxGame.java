@@ -1,0 +1,57 @@
+package com.hakkatoreinbukuma.spaceship;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.hakkatoreinbukuma.spaceship.GlobalClasses.Assets;
+import com.hakkatoreinbukuma.spaceship.MyBaseClasses.Game.MyGame;
+import com.hakkatoreinbukuma.spaceship.Screens.LoadingScreen;
+
+public class MyGdxGame extends MyGame {
+	SpriteBatch batch;
+
+	public Label.LabelStyle getLabelStyle() {
+		Label.LabelStyle style;
+		style = new com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle();
+		style.font = Assets.manager.get(Assets.ALEGREYAREGULAR_FONT);
+		style.fontColor = Color.YELLOW;
+		return style;
+	}
+
+	public Slider.SliderStyle getSliderStyle(){
+		Slider.SliderStyle sliderStyle = new Slider.SliderStyle();
+        sliderStyle.knobDown = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.SLIDER_KNOBH),0,0,20,20));
+        sliderStyle.knobOver = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.SLIDER_KNOBH),0,0,20,20));
+		sliderStyle.knob = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.SLIDER_KNOB),0,0,20,20));
+		sliderStyle.background = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.SLIDER_BG),0,0,400,20));
+		return sliderStyle;
+	}
+
+	public TextButton.TextButtonStyle getButtonStyle(){
+		TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
+		buttonStyle.font = Assets.manager.get(Assets.ALEGREYAREGULAR_FONT);
+		buttonStyle.fontColor = new Color(1, 1, 1, 1);
+
+		buttonStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.WHITE_TEXTURE)));
+		buttonStyle.down = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.FULLWHITE_TEXTURE)));
+		buttonStyle.over = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.FULLWHITE_TEXTURE)));
+
+		return buttonStyle;
+	}
+
+	@Override
+	public void create() {
+		super.create();
+		Assets.prepare();
+		setScreen(new LoadingScreen(this));
+	}
+
+
+}
+
