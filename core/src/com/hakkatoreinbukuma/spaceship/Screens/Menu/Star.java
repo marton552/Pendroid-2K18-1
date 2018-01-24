@@ -18,18 +18,22 @@ public class Star extends OneSpriteStaticActor{
     float maxWidth;
     float maxHeight;
 
+    int startTime;
+
     int tick = 0;
     Random r = new Random();
 
     MenuBackground mb;
 
-    public Star(float x, float y, float dirX, float dirY, float maxWidth, float maxHeight, MenuBackground mb) {
+    public Star(float x, float y, float dirX, float dirY, float maxWidth, float maxHeight, int startTime, MenuBackground mb) {
         super(Assets.manager.get(Assets.FULLWHITE_TEXTURE));
         //int border = 100;
         //x = x + 20 * -dirX;
         //y = y + 20 * dirY;
         setPosition(x, y);
         setSize(1, 1);
+        setVisible(false);
+
 
         this.startX = x;
         this.startY = y;
@@ -41,6 +45,8 @@ public class Star extends OneSpriteStaticActor{
         this.maxWidth = maxWidth;
         this.maxHeight = maxHeight;
 
+        this.startTime = startTime;
+
         this.mb = mb;
     }
 
@@ -48,7 +54,11 @@ public class Star extends OneSpriteStaticActor{
     @Override
     public void act(float delta) {
 
-        if(getWidth() <= 8)
+        if(tick >= startTime) {
+            setVisible(true);
+        }else tick++;
+
+        if(getWidth() <= 8 && isVisible())
             setSize(getWidth() + 0.1f, getHeight() + 0.1f);
 
         setPosition(getX() + (dirX * getWidth()), getY() + (dirY * getHeight()));
@@ -63,6 +73,9 @@ public class Star extends OneSpriteStaticActor{
 
             dirX = mb.randomDir(0.1f, 3);
             dirY = mb.randomDir(0.1f, 3);
+
+            tick = 0;
+            setVisible(false);
 
 
         }

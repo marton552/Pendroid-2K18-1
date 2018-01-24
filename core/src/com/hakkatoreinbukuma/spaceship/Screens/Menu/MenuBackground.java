@@ -10,13 +10,14 @@ public class MenuBackground{
         this.stage = stage;
 
         Star temp;
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 80; i++) {
             temp = new Star(stage.getViewport().getWorldWidth() / 2 ,
                             stage.getViewport().getWorldHeight() / 2,
                             randomDir(0.1f, 3),
                             randomDir(0.1f, 3),
                             stage.getViewport().getWorldWidth(),
                             stage.getViewport().getScreenHeight(),
+                            r.nextInt(200 - 1) + 1,
                             this);
 
             stage.addActor(temp);

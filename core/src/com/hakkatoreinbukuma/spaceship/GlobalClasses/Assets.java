@@ -56,6 +56,8 @@ public class Assets {
 	public static final AssetDescriptor<Texture> SLIDER_KNOB = new AssetDescriptor<Texture>("ui_textures/sliderknob.png", Texture.class);
 	public static final AssetDescriptor<Texture> SLIDER_KNOBH = new AssetDescriptor<Texture>("ui_textures/sliderknob2.png", Texture.class);
 
+	public static final AssetDescriptor<Texture> EXAMPLE = new AssetDescriptor<Texture>("example.png", Texture.class);
+
 
 
 
@@ -83,6 +85,8 @@ public class Assets {
 		manager.load(SLIDER_BG);
 		manager.load(SLIDER_KNOB);
 		manager.load(SLIDER_KNOBH);
+
+		manager.load(EXAMPLE);
 
 		manager.load(ALEGREYAREGULAR_FONT);
 
