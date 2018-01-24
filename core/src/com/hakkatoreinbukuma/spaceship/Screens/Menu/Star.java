@@ -25,6 +25,9 @@ public class Star extends OneSpriteStaticActor{
 
     public Star(float x, float y, float dirX, float dirY, float maxWidth, float maxHeight, MenuBackground mb) {
         super(Assets.manager.get(Assets.FULLWHITE_TEXTURE));
+        //int border = 100;
+        //x = x + 20 * -dirX;
+        //y = y + 20 * dirY;
         setPosition(x, y);
         setSize(1, 1);
 
