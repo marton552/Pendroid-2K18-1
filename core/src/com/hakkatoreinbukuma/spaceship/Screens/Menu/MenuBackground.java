@@ -10,7 +10,7 @@ public class MenuBackground{
         this.stage = stage;
 
         Star temp;
-        for (int i = 0; i < 80; i++) {
+        for (int i = 0; i < 5; i++) {
             temp = new Star(stage.getViewport().getWorldWidth() / 2 ,
                             stage.getViewport().getWorldHeight() / 2,
                             randomDir(0.1f, 3),
