@@ -11,6 +11,11 @@ public class OneSpriteAnimatedActor extends OneSpriteActor {
 
     protected final TextureAtlas textureAtlas;
     protected float fps = 30;
+
+    public boolean isRunning() {
+        return running;
+    }
+
     protected boolean running = true;
     protected boolean looping = true;
     protected float animationTime = 0;
@@ -26,8 +31,6 @@ public class OneSpriteAnimatedActor extends OneSpriteActor {
     public void setLooping(boolean looping) {
         this.looping = looping;
     }
-
-    public boolean isRunning(){ return running; }
 
     public int getActualFrame() {
         return actualFrame;
