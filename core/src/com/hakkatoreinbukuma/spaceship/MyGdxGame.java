@@ -37,10 +37,12 @@ public class MyGdxGame extends MyGame {
 		TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
 		buttonStyle.font = Assets.manager.get(Assets.ALEGREYAREGULAR_FONT);
 		buttonStyle.fontColor = new Color(1, 1, 1, 1);
+		buttonStyle.overFontColor = new Color(0, 0, 0, 1);
+		buttonStyle.downFontColor = new Color(0, 0, 0, 1);
 
-		buttonStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.WHITE_TEXTURE)));
-		buttonStyle.down = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.FULLWHITE_TEXTURE)));
-		buttonStyle.over = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.FULLWHITE_TEXTURE)));
+		buttonStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.BTN_BACK)));
+		buttonStyle.down = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.BTN_HOVER)));
+		buttonStyle.over = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.BTN_HOVER)));
 
 		return buttonStyle;
 	}

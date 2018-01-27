@@ -23,7 +23,6 @@ import com.hakkatoreinbukuma.spaceship.Screens.Game.GameScreen;
 
 public class MenuStage extends MyStage {
 
-    private MyLabel test = new MyLabel("Teszt", game.getLabelStyle());
     private OneSpriteStaticActor logoActor = new OneSpriteStaticActor(Assets.manager.get(Assets.EXAMPLE));
 
     float centerXLogo;
@@ -34,7 +33,7 @@ public class MenuStage extends MyStage {
 
         new MenuBackground(this);
 
-        logoActor.setSize(logoActor.getWidth() / 3, logoActor.getHeight() / 3);
+        logoActor.setSize(logoActor.getWidth() / 2, logoActor.getHeight() / 2);
         logoActor.setPosition(getViewport().getWorldWidth() / 2 - logoActor.getWidth() / 2,
                               getViewport().getWorldHeight() - logoActor.getHeight() - 60);
 
@@ -42,24 +41,13 @@ public class MenuStage extends MyStage {
         centerYLogo = getViewport().getWorldHeight() - logoActor.getHeight() - 60;
 
         MyButton playButton = new MyButton("Play", game.getButtonStyle());
-        playButton.setPosition(getViewport().getWorldWidth() / 2 - playButton.getWidth() / 2, getViewport().getWorldHeight() - 300);
+        playButton.setPosition(getViewport().getWorldWidth() / 2 - playButton.getWidth() / 2, getViewport().getWorldHeight() - 360);
 
         playButton.addListener(new ClickListener(){
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(new GameScreen(game));
-            }
-        });
-
-        MyButton skinsButton = new MyButton("Skins", game.getButtonStyle());
-        skinsButton.setPosition(getViewport().getWorldWidth() / 2 - playButton.getWidth() / 2, getViewport().getWorldHeight() - 360);
-
-        skinsButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                //game.setScreen(new SkinMenuScreen(game));
             }
         });
 
@@ -87,11 +75,7 @@ public class MenuStage extends MyStage {
 
         //addActor(bgActor);
         addActor(logoActor);
-        test.setY(40);
-        addActor(test);
-
         addActor(playButton);
-        addActor(skinsButton);
         addActor(aboutButton);
         addActor(quitButton);
 
@@ -106,9 +90,8 @@ public class MenuStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        test.setText("x: "+Gdx.input.getAccelerometerX()+"\ny: "+Gdx.input.getAccelerometerY()+"\nz: "+Gdx.input.getAccelerometerZ());
 
-        float x = logoActor.getX() + (Gdx.input.getAccelerometerY()) * delta * 20;
+        float x = logoActor.getX() + (Gdx.input.getAccelerometerY()) * delta * 40;
         if(x <= centerXLogo + 40 && x > centerXLogo - 40) {
             logoActor.setX(x);
         }

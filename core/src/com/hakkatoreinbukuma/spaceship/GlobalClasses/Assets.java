@@ -34,6 +34,8 @@ public class Assets {
 	static {
 		fontParameter.fontFileName = "alegreyaregular.otf";
 		fontParameter.fontParameters.size = 30;
+		fontParameter.fontParameters.borderColor = Color.WHITE;
+		fontParameter.fontParameters.borderWidth = 1;
 		fontParameter.fontParameters.characters = CHARS;
 		fontParameter.fontParameters.color = Color.WHITE;
 	}
@@ -48,6 +50,9 @@ public class Assets {
 	public static final AssetDescriptor<TextureAtlas> TITLE_ATLAS = new AssetDescriptor<TextureAtlas>("atlasok/title.atlas", TextureAtlas.class);
 
 	//Button
+	public static final AssetDescriptor<Texture> BTN_BACK = new AssetDescriptor<Texture>("ui_textures/btn_back.png", Texture.class);
+	public static final AssetDescriptor<Texture> BTN_HOVER = new AssetDescriptor<Texture>("ui_textures/btn_hover.png", Texture.class);
+
 	public static final AssetDescriptor<Texture> WHITE_TEXTURE = new AssetDescriptor<Texture>("ui_textures/white.png", Texture.class);
 	public static final AssetDescriptor<Texture> FULLWHITE_TEXTURE = new AssetDescriptor<Texture>("ui_textures/fullwhite.png", Texture.class);
 
@@ -78,6 +83,9 @@ public class Assets {
 		manager.load(MENU_BG);
 
 		manager.load(TITLE_ATLAS);
+
+		manager.load(BTN_BACK);
+		manager.load(BTN_HOVER);
 
 		manager.load(WHITE_TEXTURE);
 		manager.load(FULLWHITE_TEXTURE);
