@@ -19,6 +19,7 @@ import com.hakkatoreinbukuma.spaceship.MyBaseClasses.Scene2D.OneSpriteStaticActo
 import com.hakkatoreinbukuma.spaceship.MyBaseClasses.UI.MyButton;
 import com.hakkatoreinbukuma.spaceship.MyBaseClasses.UI.MyLabel;
 import com.hakkatoreinbukuma.spaceship.MyGdxGame;
+import com.hakkatoreinbukuma.spaceship.Screens.Game.GameScreen;
 
 public class MenuStage extends MyStage {
 
@@ -47,7 +48,7 @@ public class MenuStage extends MyStage {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //game.setScreen(new GameScreen(game));
+                game.setScreen(new GameScreen(game));
             }
         });
 
