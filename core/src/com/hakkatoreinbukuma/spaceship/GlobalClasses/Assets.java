@@ -63,7 +63,12 @@ public class Assets {
 
 	public static final AssetDescriptor<Texture> EXAMPLE = new AssetDescriptor<Texture>("example.png", Texture.class);
 
+	//Backgrounds
+	public static final AssetDescriptor<Texture> BG_1 = new AssetDescriptor<Texture>("bg.jpg", Texture.class);
 
+
+	//Spaceship
+	public static final AssetDescriptor<Texture> SPACESHIP = new AssetDescriptor<Texture>("spaceship.png", Texture.class);
 
 
 
@@ -95,6 +100,10 @@ public class Assets {
 		manager.load(SLIDER_KNOBH);
 
 		manager.load(EXAMPLE);
+
+		manager.load(BG_1);
+
+		manager.load(SPACESHIP);
 
 		manager.load(ALEGREYAREGULAR_FONT);
 
