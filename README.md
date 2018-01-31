@@ -8,26 +8,29 @@ Az űrhajónak 3 élete legyen és ha mindet elveszti akkor vége a játéknak, 
 A játékban legyenek bossok amik random jöhetnek. Ezek a bossok külön elemekből állnak, amiket külön kell szétlőni, de persze legyen egy összélete.
 És kb ennyi. Összeszedtem a szabad feladatotak (pl bossok, poweruppok) és a személyre szólókat.
 
+FONTOS!
+A poweruppok 2D textúráiból két fajta van (2 mappába szétszórva). Az egyik a "pick" vagyis az ami pályarészenkénk jön és össze lehet szedni. A másik a "use" vagyis az ami a bal vagy jobb sarokban ott van (a GUI-ban) és jelzi ha már használatban van az a képesség. Mappákba csoportosítottam de a nevükben is benne van. A képességekből is két fajta van. Van passzív és az ult. Az ult használható képesség cooldown van rajta. A png-k nevét // után odaírtam a feladatok mögé.
+
 Szabad feladatok:
 
 Poweruppok: 
-- [ ] Tűzerősség növelése 20%-al
-- [ ] Lővés gyorsaság növelése 30%-al
-- [ ] Élet 50%-ának pajzsá tétele. (pajzs = kétszer akkora sebzést tud befogadni és tud regenerálódni lassan)
-- [ ] Követős rakéták
-- [ ] Mini űrhajó - Pew (Pew = autómatikusan lő időközönként az ellenfélre, és melletted marad. Sebezhetetlen)
-- [ ] Mini űrhajó - Doc (Doc = olyan mint a Pew, csak nem lő hanem az életedet gyógyítja lassan)
-- [ ] A bevitt sebzések arányában tölten vissza az életed
-- [ ] Egy pajzs ami egy bármekkora sebzést felfog, viszont utána eltűnik és 5 másodperc a pajzs regenerációja
-- [ ] A lövedék nem áll meg az eltalált ellenfélnél hanem "átmegy rajta"
-- [ ] passzívan van egy gyenge lézere ami közvetlen előre lő
+- [ ] Tűzerősség növelése 20%-al //firepower
+- [ ] Lővés gyorsaság növelése 30%-al //firespeed
+- [ ] Élet 50%-ának pajzsá tétele. (pajzs = kétszer akkora sebzést tud befogadni és tud regenerálódni lassan) //shield1
+- [ ] Követős rakéták //rocket
+- [ ] Mini űrhajó - Pew (Pew = autómatikusan lő időközönként az ellenfélre, és melletted marad. Sebezhetetlen) //pew
+- [ ] Mini űrhajó - Doc (Doc = olyan mint a Pew, csak nem lő hanem az életedet gyógyítja lassan) //doc
+- [ ] A bevitt sebzések arányában tölten vissza az életed //fireheal
+- [ ] Egy pajzs ami egy bármekkora sebzést felfog, viszont utána eltűnik és 5 másodperc a pajzs regenerációja //shield2
+- [ ] A lövedék nem áll meg az eltalált ellenfélnél hanem "átmegy rajta" //fireover
+- [ ] passzívan van egy gyenge lézere ami közvetlen előre lő //laser
 
 Használható képességek: (ezek mondjuk a bal alsó sarokba lennének, rá kell nyomni hogy aktiválódjon. Ugyanúgy a Poweruppoknál lehet majd választani őket)
-- [ ] Laser
-- [ ] Tűzerő megsokszorozása
-- [ ] Egyszerre 5-10 követős rakéta
-- [ ] Teljes sebzésvédelem pár másodpercig
-- [ ] Ha benyomja akkor "elkábitja az ellenfeleket, vagyis azok nem tudnak lőni
+- [ ] Laser //laserzlt
+- [ ] Tűzerő megsokszorozása //firepowerult
+- [ ] Egyszerre 5-10 követős rakéta //targetult
+- [ ] Teljes sebzésvédelem pár másodpercig //shieldult
+- [ ] Ha benyomja akkor "elkábitja az ellenfeleket, vagyis azok nem tudnak lőni //sleep
 
 Bossok:
 
