@@ -7,7 +7,7 @@ import com.hakkatoreinbukuma.spaceship.MyBaseClasses.Scene2D.OneSpriteStaticActo
 public class Spaceship extends OneSpriteStaticActor {
 
     public int attackSpeed = 20;
-    public int damage = 1;
+    public long damage = 5;
     private int tick = 0;
 
     private GameStage stage;

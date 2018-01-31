@@ -78,6 +78,8 @@ public class Assets {
 	//Enemy
 	public static final AssetDescriptor<Texture> ENEMY_1 = new AssetDescriptor<Texture>("enemy1.png", Texture.class);
 
+	//Powerups
+	public static final AssetDescriptor<Texture> POWER_POWERUP = new AssetDescriptor<Texture>("powerup/firepowerpick.png", Texture.class);
 
 
 	public static void prepare() {
@@ -115,6 +117,8 @@ public class Assets {
 		manager.load(SPACESHIP);
 
 		manager.load(ENEMY_1);
+
+		manager.load(POWER_POWERUP);
 
 		manager.load(ALEGREYAREGULAR_FONT);
 

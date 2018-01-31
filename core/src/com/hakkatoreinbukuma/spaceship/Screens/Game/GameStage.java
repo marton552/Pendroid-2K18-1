@@ -22,6 +22,8 @@ import com.hakkatoreinbukuma.spaceship.MyBaseClasses.Scene2D.OneSpriteStaticActo
 import com.hakkatoreinbukuma.spaceship.MyBaseClasses.UI.MyButton;
 import com.hakkatoreinbukuma.spaceship.MyBaseClasses.UI.MyLabel;
 import com.hakkatoreinbukuma.spaceship.MyGdxGame;
+import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.PowerPowerup;
+import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.Powerup;
 
 import java.util.ArrayList;
 
@@ -29,7 +31,7 @@ public class GameStage extends MyStage {
 
 
     OneSpriteStaticActor bg;
-    Spaceship ship;
+    public Spaceship ship;
     int wave = 0;
     int HP = 100;
     int ARMOR = 0;
@@ -39,6 +41,8 @@ public class GameStage extends MyStage {
 
     ArrayList<Bullet> friendlyBullets = new ArrayList<Bullet>();
     ArrayList<Bullet> enemyBullets = new ArrayList<Bullet>();
+
+    ArrayList<Powerup> powerups = new ArrayList<Powerup>();
 
 
     public GameStage(Batch batch, final MyGdxGame game) {
@@ -53,6 +57,13 @@ public class GameStage extends MyStage {
         ship.addBaseCollisionRectangleShape();
         ship.setPosition(getViewport().getWorldWidth() / 2 - ship.getWidth() / 2, 100);
         addActor(ship);
+
+        //Test Powerup
+        PowerPowerup powerup = new PowerPowerup(this);
+        powerup.addBaseCollisionRectangleShape();
+        powerup.setPosition(100, 100);
+        powerups.add(powerup);
+        addActor(powerup);
 
         addListener(new DragListener(){
             @Override
@@ -123,8 +134,19 @@ public class GameStage extends MyStage {
             }
         }
 
+        for (int p = 0; p < powerups.size(); p++) {
+            if(ship.overlaps(powerups.get(p))){
+                System.out.println("Powerup");
+                powerups.get(p).onPickup();
+                getActors().removeValue(powerups.get(p), false);
+                powerups.remove(p);
+            }
+        }
+
+        // Új Wave ha meghal mindenki (Ezt majd csere.)
         if (enemys.size() <= 0) nextWave();
 
+        // Ha meghal akkor itt lesz az EndScreen
         if(HP <= 0){
             System.out.println("End Game");
         }
@@ -150,7 +172,7 @@ public class GameStage extends MyStage {
         wave++;
         if(wave == 1 || wave == 2){
             for (int i = 0; i < 5; i++) {
-                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_1), 1, 3, true, 80, this);
+                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_1), 1, 15, true, 80, this);
                 enemys.add(temp);
                 temp.setX(150 + 100 * (i + 1));
 
