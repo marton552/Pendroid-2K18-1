@@ -29,8 +29,8 @@ public class GameScreen extends MyScreen {
     public void render(float delta) {
         super.render(delta);
 
-        gameStage.act(delta);
-        gameStage.draw();
+        //gameStage.act(delta);
+        //gameStage.draw();
 
         hud.act(delta);
         hud.draw();

@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.badlogic.gdx.graphics.g3d.Model;
 
 
 public class Assets {
@@ -69,6 +70,8 @@ public class Assets {
 
 	//Spaceship
 	public static final AssetDescriptor<Texture> SPACESHIP = new AssetDescriptor<Texture>("spaceship.png", Texture.class);
+	//spaceship.obj
+	public static final AssetDescriptor<Model> SPACESHIP_OBJ = new AssetDescriptor<Model>("spaceship.g3db", Model.class);
 
 
 
@@ -104,6 +107,7 @@ public class Assets {
 		manager.load(BG_1);
 
 		manager.load(SPACESHIP);
+		//manager.load(SPACESHIP_OBJ);
 
 		manager.load(ALEGREYAREGULAR_FONT);
 
