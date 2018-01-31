@@ -68,11 +68,15 @@ public class Assets {
 	public static final AssetDescriptor<Texture> BG_1 = new AssetDescriptor<Texture>("bg.jpg", Texture.class);
 
 
+	//Anims
+	public static final AssetDescriptor<TextureAtlas> EXPLOSION = new AssetDescriptor<TextureAtlas>("atlasok/explosion.atlas", TextureAtlas.class);
+
+
 	//Spaceship
 	public static final AssetDescriptor<Texture> SPACESHIP = new AssetDescriptor<Texture>("spaceship.png", Texture.class);
-	//spaceship.obj
-	public static final AssetDescriptor<Model> SPACESHIP_OBJ = new AssetDescriptor<Model>("spaceship.g3db", Model.class);
 
+	//Enemy
+	public static final AssetDescriptor<Texture> ENEMY_1 = new AssetDescriptor<Texture>("enemy1.png", Texture.class);
 
 
 
@@ -106,8 +110,11 @@ public class Assets {
 
 		manager.load(BG_1);
 
+		manager.load(EXPLOSION);
+
 		manager.load(SPACESHIP);
-		//manager.load(SPACESHIP_OBJ);
+
+		manager.load(ENEMY_1);
 
 		manager.load(ALEGREYAREGULAR_FONT);
 

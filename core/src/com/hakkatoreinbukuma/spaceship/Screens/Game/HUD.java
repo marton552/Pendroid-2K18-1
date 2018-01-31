@@ -45,20 +45,24 @@ public class HUD extends MyStage{
         cam.position.set(10f, 10f, 10f);
         cam.lookAt(0,0,0);
         cam.near = 1f;
-        cam.far = 300f;
+        cam.far = 400;
         cam.update();
 
         ModelBuilder modelBuilder = new ModelBuilder();
         ModelInstance shipInstance;
 
 
+        UBJsonReader jsonReader = new UBJsonReader();
 
-        //Model model = Assets.manager.get(Assets.SPACESHIP_OBJ);
+        G3dModelLoader modelLoader = new G3dModelLoader(jsonReader);
 
-        Model model = modelBuilder.createBox(5f, 5f, 5f,
+        Model model = modelLoader.loadModel(Gdx.files.getFileHandle("x-wing.g3db", Files.FileType.Internal));
+
+        /*Model model = modelBuilder.createBox(5f, 5f, 5f,
                 new Material(ColorAttribute.createDiffuse(Color.GREEN)),
-                VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);
+                VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);*/
         shipInstance = new ModelInstance(model);
+        shipInstance.transform.scale(1, 1, 1);
         instances.add(shipInstance);
     }
 

@@ -6,9 +6,31 @@ import com.hakkatoreinbukuma.spaceship.MyBaseClasses.Scene2D.OneSpriteStaticActo
 
 public class Spaceship extends OneSpriteStaticActor {
 
-    public Spaceship() {
+    public int attackSpeed = 20;
+    public int damage = 1;
+    private int tick = 0;
+
+    private GameStage stage;
+
+    public Spaceship(GameStage stage) {
         super(Assets.manager.get(Assets.SPACESHIP));
+
+        this.stage = stage;
+
         setSize(getWidth() / 4, getHeight() / 4);
     }
 
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+
+        tick++;
+
+        if(tick >= attackSpeed) {
+            stage.fireBullet(this, 5, true);
+            tick = 0;
+        }
+
+
+    }
 }
