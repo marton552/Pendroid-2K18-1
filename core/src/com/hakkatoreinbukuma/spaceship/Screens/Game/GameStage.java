@@ -34,10 +34,10 @@ public class GameStage extends MyStage {
 
     OneSpriteStaticActor bg;
     public Spaceship ship;
-    public int wave = 0;
-    public int HP = 100;
-    public int ARMOR = 0;
-    public int SCORE = 0;
+    public static int wave = 0;
+    public static int HP = 100;
+    public static int ARMOR = 0;
+    public static int SCORE = 0;
     int enemyBulletDamage = 1;
 
     ArrayList<Enemy> enemys = new ArrayList<Enemy>();
@@ -166,7 +166,7 @@ public class GameStage extends MyStage {
         }
 
         // Új Wave ha meghal mindenki (Ezt majd csere.)
-        if (enemys.size() <= 0) nextWave();
+        //if (enemys.size() <= 0) nextWave();
 
         // Ha meghal akkor itt lesz az EndScreen
         if(HP <= 0){
