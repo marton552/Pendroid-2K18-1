@@ -26,6 +26,7 @@ import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.PowerPowerup;
 import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.Powerup;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameStage extends MyStage {
 
@@ -39,6 +40,12 @@ public class GameStage extends MyStage {
     public static int ARMOR = 0;
     public static int SCORE = 0;
     int enemyBulletDamage = 1;
+
+    Random r = new Random();
+
+    int tick = 0;
+    int nextWaveTick = r.nextInt(300) + 300;
+
 
     ArrayList<Enemy> enemys = new ArrayList<Enemy>();
 
@@ -166,8 +173,17 @@ public class GameStage extends MyStage {
         }
 
         // Új Wave ha meghal mindenki (Ezt majd csere.)
-        //if (enemys.size() <= 0) nextWave();
-
+        tick++;
+        if(SCORE >= 100) {
+            if (enemys.size() <= 0) {
+                nextWave();
+                tick = 0;
+            }
+            if (tick >= nextWaveTick) {
+                tick = 0;
+                nextWave();
+            }
+        }
         // Ha meghal akkor itt lesz az EndScreen
         if(HP <= 0){
             System.out.println("End Game");
@@ -199,9 +215,10 @@ public class GameStage extends MyStage {
 
     public void nextWave(){
         wave++;
-        if(wave == 1 || wave == 2){
+        int rEnemy = r.nextInt(4)+ 1;
+        if(rEnemy == 1 || rEnemy == 2){
             for (int i = 0; i < 5; i++) {
-                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_1), 1, 15, true, 80, this);
+                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_1), 1, 15 * wave, true, 80, this);
                 enemys.add(temp);
                 temp.setX(150 + 100 * (i + 1));
 
