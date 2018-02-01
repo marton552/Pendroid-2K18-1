@@ -1,5 +1,6 @@
 package com.hakkatoreinbukuma.spaceship.Screens.About;
 
+import com.badlogic.gdx.Gdx;
 import com.hakkatoreinbukuma.spaceship.MyBaseClasses.Scene2D.MyScreen;
 import com.hakkatoreinbukuma.spaceship.MyGdxGame;
 
@@ -11,6 +12,8 @@ public class AboutScreen extends MyScreen{
         super(game);
 
         aboutStage = new AboutStage(spriteBatch, game);
+
+        Gdx.input.setInputProcessor(aboutStage);
     }
 
     @Override

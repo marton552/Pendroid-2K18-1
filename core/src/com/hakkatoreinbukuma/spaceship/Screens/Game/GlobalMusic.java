@@ -10,18 +10,27 @@ import java.util.Random;
 public class GlobalMusic {
 
     static Music menu;
+    static boolean menuPlaying = false;
     static Music game;
     static Sound pew = Assets.manager.get(Assets.PEW_SOUND);
     static Random r = new Random();
     static int lastsong = 4;
 
     public static void startMenuMusic() {
-        menu = Assets.manager.get(Assets.MENU_MUSIC);
-        menu.play();
-        menu.setLooping(true);
+        if(!menuPlaying) {
+            menu = Assets.manager.get(Assets.MENU_MUSIC);
+            menu.play();
+            menu.setLooping(true);
+            menuPlaying = true;
+        }
     }
 
-    public static void stopMenuMusic() { menu.stop(); }
+    public static void stopMenuMusic() {
+        if (menuPlaying) {
+            menu.stop();
+            menuPlaying = false;
+        }
+    }
 
     public static void playGameMusic() {
         playMusic();

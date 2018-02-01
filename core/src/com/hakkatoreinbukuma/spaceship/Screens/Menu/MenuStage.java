@@ -52,8 +52,7 @@ public class MenuStage extends MyStage {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 GlobalMusic.playPewSound();
-                //game.setScreen(new GameScreen(game));
-                game.setScreen(new EndScreen(game, 10000, 100));
+                game.setScreen(new GameScreen(game));
 
             }
         });

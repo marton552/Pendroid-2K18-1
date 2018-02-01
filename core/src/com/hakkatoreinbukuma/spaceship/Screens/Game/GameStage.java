@@ -1,6 +1,7 @@
 package com.hakkatoreinbukuma.spaceship.Screens.Game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,6 +23,7 @@ import com.hakkatoreinbukuma.spaceship.MyBaseClasses.Scene2D.OneSpriteStaticActo
 import com.hakkatoreinbukuma.spaceship.MyBaseClasses.UI.MyButton;
 import com.hakkatoreinbukuma.spaceship.MyBaseClasses.UI.MyLabel;
 import com.hakkatoreinbukuma.spaceship.MyGdxGame;
+import com.hakkatoreinbukuma.spaceship.Screens.End.EndScreen;
 import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.ArmorPowerup;
 import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.FireSpeedPowerup;
 import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.FullArmorPowerup;
@@ -44,9 +46,10 @@ public class GameStage extends MyStage {
     public Spaceship ship;
     public static int wave = 1;
     public static float HP = 100;
-    public static float ARMOR = 50;
-    public static float SCORE = 99;
+    public static float ARMOR = 0;
+    public static float SCORE = 0;
 
+    public int kills = 0;
     public float finalScore = 0;
 
     Random r = new Random();
@@ -65,12 +68,16 @@ public class GameStage extends MyStage {
 
     boolean powerupsShow = false;
 
+    public HUD hud;
 
-    public GameStage(Batch batch, final MyGdxGame game) {
+
+    public GameStage(Batch batch, final MyGdxGame game, final HUD hud) {
         super(new ExtendViewport(1024, 576, new OrthographicCamera(1024, 576)), batch, game);
 
         bg = new OneSpriteStaticActor(Assets.manager.get(Assets.BG_1));
         addActor(bg);
+
+        this.hud = hud;
 
         nextWave();
 
@@ -85,6 +92,7 @@ public class GameStage extends MyStage {
         powerup.setPosition(100, 100);
         powerups.add(powerup);
         addActor(powerup);*/
+
 
         addListener(new DragListener(){
 
@@ -148,7 +156,8 @@ public class GameStage extends MyStage {
 
                         if (enemys.get(e).hp < 0) { // Robbanás animation az Enemyre
                             removeEnemyFromWorld(enemys.get(e), true);
-                            SCORE = SCORE + 2.5f;
+                            SCORE = SCORE + 4.5f / (wave * 0.8f);
+                            kills++;
                         }
                     }
                 }
@@ -226,6 +235,7 @@ public class GameStage extends MyStage {
             // Ha elérte a véget
             if(powerupsShow == false){
                 System.out.println("Powerups");
+                //ship.setPosition(getViewport().getWorldWidth() / 2 - ship.getWidth() / 2, 100);
                 showPowerups();
             }
 
@@ -233,6 +243,8 @@ public class GameStage extends MyStage {
         // Ha meghal akkor itt lesz az EndScreen
         if(HP <= 0){
             System.out.println("End Game");
+            finalScore += SCORE;
+            game.setScreen(new EndScreen(game, finalScore, wave, kills));
         }
 
         if((ship.getX() != ax || ship.getY() != ay) && movable) {
@@ -269,7 +281,7 @@ public class GameStage extends MyStage {
             p.addBaseCollisionRectangleShape();
 
             powerups.add(p);
-            p.setY(getViewport().getWorldHeight() / 2 - p.getHeight() / 2);
+            p.setY(getViewport().getWorldHeight() / 2 - p.getHeight() / 2 + 200);
 
             if(i == 0) xOff = - p.getWidth() / 2 - 100;
             if(i == 2) xOff = p.getWidth() / 2 + 100;
@@ -297,13 +309,13 @@ public class GameStage extends MyStage {
 
         powerupids[index] = rand;
 
-        if(rand == 1) {
+        if(rand == 0) {
             return new ArmorPowerup(this);
-        }else if(rand == 2) {
+        }else if(rand == 1) {
             return new FireSpeedPowerup(this);
-        }else if(rand == 3) {
+        }else if(rand == 2) {
             return new FullArmorPowerup(this);
-        }else if(rand == 4) {
+        }else if(rand == 3) {
             return new HealPowerup(this);
         }else{
             return new PowerPowerup(this);
@@ -317,7 +329,7 @@ public class GameStage extends MyStage {
         //rEnemy = 2;
         if(rEnemy == 1){
             for (int i = 0; i < 5; i++) {
-                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_1), 1, 15 * Math.round(wave *0.5), true, false, 80, 2, 25, this);
+                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_1), 1, 10 * Math.round(wave *0.5), true, false, 90, 2, 25, this);
                 enemys.add(temp);
                 temp.setX(150 + 100 * (i + 1));
 
@@ -326,7 +338,7 @@ public class GameStage extends MyStage {
             }
         }else if(rEnemy == 2) {
             for (int i = 0; i < 3; i++) {
-                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_2), 0.7f, 20 * Math.round(wave *0.5), true, false, 200, 8, 6, this);
+                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_2), 0.7f, 15 * Math.round(wave *0.5), true, false, 200, 5, 6, this);
                 enemys.add(temp);
                 temp.setRotation(180);
                 temp.setX(300 + 100 * (i + 1));
@@ -346,7 +358,7 @@ public class GameStage extends MyStage {
             }
         }else if(rEnemy == 4) {
             for (int i = 0; i < 4; i++) {
-                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_4), 0.8f, 15 * Math.round(wave *0.5), true, true, 150, 2, 4, this);
+                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_4), 0.8f, 15 * Math.round(wave *0.5), true, true, 150, 2, 2.5f, this);
                 enemys.add(temp);
                 temp.setRotation(180);
                 temp.setX(200 * (i + 1));

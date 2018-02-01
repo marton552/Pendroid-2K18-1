@@ -12,6 +12,6 @@ public class FireSpeedPowerup extends Powerup{
     @Override
     public void onPickup() {
         super.onPickup();
-        stage.ship.attackSpeed = stage.ship.attackSpeed + Math.round(stage.ship.attackSpeed * 0.4);
+        stage.ship.attackSpeed = stage.ship.attackSpeed - Math.round(stage.ship.attackSpeed * 0.3);
     }
 }

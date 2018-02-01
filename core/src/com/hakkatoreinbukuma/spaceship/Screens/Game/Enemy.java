@@ -19,7 +19,7 @@ public class Enemy extends OneSpriteStaticActor{
 
     int tick = 0;
 
-    public Enemy(Texture texture, float speed, long hp, boolean canShoot, boolean doubleShot, int shootSpeed, float damage, int ratio, GameStage stage) {
+    public Enemy(Texture texture, float speed, long hp, boolean canShoot, boolean doubleShot, int shootSpeed, float damage, float ratio, GameStage stage) {
         super(texture);
 
         this.speed = speed;

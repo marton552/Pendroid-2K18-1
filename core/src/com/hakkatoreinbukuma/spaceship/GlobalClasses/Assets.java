@@ -47,7 +47,7 @@ public class Assets {
 
 	//public static final AssetDescriptor<Texture> AGYU_TEXTURE = new AssetDescriptor<Texture>("cannon/cannon5.png", Texture.class);
 	//public static final AssetDescriptor<Texture> BG_TEXTURE = new AssetDescriptor<Texture>("back2.png", Texture.class);
-	public static final AssetDescriptor<Texture> MENU_BG = new AssetDescriptor<Texture>("menu.png", Texture.class);
+	public static final AssetDescriptor<Texture> MENU = new AssetDescriptor<Texture>("menu.png", Texture.class);
 
 	public static final AssetDescriptor<TextureAtlas> TITLE_ATLAS = new AssetDescriptor<TextureAtlas>("atlasok/title.atlas", TextureAtlas.class);
 
@@ -111,7 +111,7 @@ public class Assets {
 		manager.setLoader(BitmapFont.class, ".otf", new FreetypeFontLoader(resolver));
 
 		//manager.load(BG_TEXTURE);
-		manager.load(MENU_BG);
+		manager.load(MENU);
 
 		manager.load(TITLE_ATLAS);
 

@@ -9,10 +9,10 @@ public class EndScreen extends MyScreen{
 
     EndStage endStage;
 
-    public EndScreen(MyGdxGame game, float score, int wave) {
+    public EndScreen(MyGdxGame game, float score, int wave, int kills) {
         super(game);
 
-        endStage = new EndStage(spriteBatch, game, score, wave);
+        endStage = new EndStage(spriteBatch, game, score, wave, kills);
 
         Gdx.input.setInputProcessor(endStage);
 

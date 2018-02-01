@@ -23,7 +23,7 @@ public class EndStage extends MyStage {
     MyButton back;
 
 
-    public EndStage(Batch batch, final MyGdxGame game, float score, int wave) {
+    public EndStage(Batch batch, final MyGdxGame game, float score, int wave, int kills) {
         super(new ExtendViewport(1024, 576, new OrthographicCamera(1024, 576)), batch, game);
 
         new MenuBackground(this);
@@ -35,7 +35,7 @@ public class EndStage extends MyStage {
 
         addActor(dead);
 
-        info = new MyLabel("Elért pontszám: "+(int)score+"\nElért szint: "+wave, game.getLabelStyle());
+        info = new MyLabel("Elért pontszám: "+(int)score+"\nElért szint: "+wave+"\nFelrobbantott űrhajók száma: "+kills, game.getLabelStyle());
         info.setPosition(getViewport().getWorldWidth() / 2 - info.getWidth() / 2, getViewport().getWorldHeight() / 2 - info.getHeight() / 2);
         info.setAlignment(Align.center);
 
