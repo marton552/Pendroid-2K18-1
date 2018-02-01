@@ -262,6 +262,8 @@ public class GameStage extends MyStage {
 
             float xOff = 0;
             Powerup p = randomPowerup(i);
+            p.addBaseCollisionRectangleShape();
+
             powerups.add(p);
             p.setY(getViewport().getWorldHeight() / 2 - p.getHeight() / 2);
 
@@ -269,7 +271,6 @@ public class GameStage extends MyStage {
             if(i == 2) xOff = p.getWidth() / 2 + 50;
 
             p.setX(getViewport().getWorldWidth() / 2 - p.getWidth() / 2 + xOff);
-            p.addBaseCollisionRectangleShape();
             addActor(p);
         }
     }
