@@ -84,6 +84,9 @@ public class Assets {
 	//Powerups
 	public static final AssetDescriptor<Texture> POWER_POWERUP = new AssetDescriptor<Texture>("powerup/firepowerpick.png", Texture.class);
 	public static final AssetDescriptor<Texture> FIRESPEED_POWERUP = new AssetDescriptor<Texture>("powerup/firespeedpick.png", Texture.class);
+	public static final AssetDescriptor<Texture> HEAL_POWERUP = new AssetDescriptor<Texture>("powerup/docpick.png", Texture.class);
+	public static final AssetDescriptor<Texture> ARMOR_POWERUP = new AssetDescriptor<Texture>("powerup/shieldpick.png", Texture.class);
+	public static final AssetDescriptor<Texture> FULLARMOR_POWERUP = new AssetDescriptor<Texture>("powerup/shield2pick.png", Texture.class);
 
 
 	//Music
@@ -136,6 +139,9 @@ public class Assets {
 
 		manager.load(POWER_POWERUP);
 		manager.load(FIRESPEED_POWERUP);
+		manager.load(HEAL_POWERUP);
+		manager.load(ARMOR_POWERUP);
+		manager.load(FULLARMOR_POWERUP);
 
 		manager.load(MENU_MUSIC);
 		manager.load(MUSIC_1);

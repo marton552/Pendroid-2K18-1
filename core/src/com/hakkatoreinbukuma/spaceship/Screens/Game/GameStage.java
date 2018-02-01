@@ -22,6 +22,10 @@ import com.hakkatoreinbukuma.spaceship.MyBaseClasses.Scene2D.OneSpriteStaticActo
 import com.hakkatoreinbukuma.spaceship.MyBaseClasses.UI.MyButton;
 import com.hakkatoreinbukuma.spaceship.MyBaseClasses.UI.MyLabel;
 import com.hakkatoreinbukuma.spaceship.MyGdxGame;
+import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.ArmorPowerup;
+import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.FireSpeedPowerup;
+import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.FullArmorPowerup;
+import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.HealPowerup;
 import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.PowerPowerup;
 import com.hakkatoreinbukuma.spaceship.Screens.Game.Powerups.Powerup;
 
@@ -40,7 +44,7 @@ public class GameStage extends MyStage {
     public Spaceship ship;
     public static int wave = 1;
     public static float HP = 100;
-    public static float ARMOR = 0;
+    public static float ARMOR = 50;
     public static float SCORE = 0;
 
     Random r = new Random();
@@ -55,6 +59,9 @@ public class GameStage extends MyStage {
     ArrayList<Bullet> enemyBullets = new ArrayList<Bullet>();
 
     ArrayList<Powerup> powerups = new ArrayList<Powerup>();
+    int[] powerupids = {-1, -1, -1};
+
+    boolean powerupsShow = false;
 
 
     public GameStage(Batch batch, final MyGdxGame game) {
@@ -153,7 +160,13 @@ public class GameStage extends MyStage {
 
                 if (bullet.overlaps(ship)) {
 
-                    HP = HP - bullet.damage;
+                    float maradek = bullet.damage - ARMOR;
+                    if(ARMOR > 0) {
+                        ARMOR = ARMOR - (bullet.damage + (bullet.damage * 0.5f));
+                    }
+                    if(maradek > 0)
+                        HP = HP - maradek;
+
                     System.out.println(bullet.damage);
                     removeBulletFromWorld(bullet,false);
 
@@ -174,8 +187,15 @@ public class GameStage extends MyStage {
             if(ship.overlaps(powerups.get(p))){
                 System.out.println("Powerup");
                 powerups.get(p).onPickup();
-                getActors().removeValue(powerups.get(p), false);
-                powerups.remove(p);
+
+                powerupids[0] = -1;
+                powerupids[1] = -1;
+                powerupids[2] = -1;
+
+                for (int d = 0; d < powerups.size(); d++) {
+                    getActors().removeValue(powerups.get(d), false);
+                    powerups.remove(d);
+                }
             }
         }
 
@@ -222,6 +242,52 @@ public class GameStage extends MyStage {
         getActors().removeValue(enemy, false);
         enemys.remove(enemys.indexOf(enemy));
 
+    }
+
+    public void showPowerups() {
+        powerupsShow = true;
+        for (int i = 0; i < 3; i++) {
+            float xOff = 0;
+            Powerup p = randomPowerup(i);
+            powerups.add(p);
+            p.setY(getViewport().getWorldHeight() / 2 - p.getHeight() / 2);
+
+            if(i == 0) xOff = - p.getWidth() - 10;
+            if(i == 0) xOff = - p.getWidth() - 10;
+
+            addActor(p);
+        }
+    }
+
+    public Powerup randomPowerup(int index) {
+        int rand = 0;
+        boolean correct = false;
+
+        while(correct == false){
+            rand = r.nextInt(4);
+            boolean correctT = true;
+
+            for(int i = 0; i < 2; i++) {
+                if(powerupids[i] == rand) correctT = false;
+            }
+
+            if(correctT == true)
+                correct = true;
+        }
+
+        powerupids[index] = rand;
+
+        if(rand == 1) {
+            return new ArmorPowerup(this);
+        }else if(rand == 2) {
+            return new FireSpeedPowerup(this);
+        }else if(rand == 3) {
+            return new FullArmorPowerup(this);
+        }else if(rand == 4) {
+            return new HealPowerup(this);
+        }else{
+            return new PowerPowerup(this);
+        }
     }
 
     public void nextWave(){
