@@ -20,6 +20,7 @@ import com.hakkatoreinbukuma.spaceship.MyBaseClasses.UI.MyButton;
 import com.hakkatoreinbukuma.spaceship.MyBaseClasses.UI.MyLabel;
 import com.hakkatoreinbukuma.spaceship.MyGdxGame;
 import com.hakkatoreinbukuma.spaceship.Screens.About.AboutScreen;
+import com.hakkatoreinbukuma.spaceship.Screens.End.EndScreen;
 import com.hakkatoreinbukuma.spaceship.Screens.Game.GameScreen;
 import com.hakkatoreinbukuma.spaceship.Screens.Game.GlobalMusic;
 
@@ -50,8 +51,10 @@ public class MenuStage extends MyStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                game.setScreen(new GameScreen(game));
                 GlobalMusic.playPewSound();
+                //game.setScreen(new GameScreen(game));
+                game.setScreen(new EndScreen(game, 10000, 100));
+
             }
         });
 

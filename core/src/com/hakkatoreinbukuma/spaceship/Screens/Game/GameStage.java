@@ -45,7 +45,7 @@ public class GameStage extends MyStage {
     public static int wave = 1;
     public static float HP = 100;
     public static float ARMOR = 50;
-    public static float SCORE = 0;
+    public static float SCORE = 99;
 
     public float finalScore = 0;
 
@@ -195,16 +195,18 @@ public class GameStage extends MyStage {
                 powerupids[2] = -1;
 
 
-                for (int d = 0; d < powerups.size(); d++) {
-                    getActors().removeValue(powerups.get(d), false);
-                    powerups.remove(d);
+                for (int i = 0; i < powerups.size(); i++) {
+                    getActors().removeValue(powerups.get(i), false);
+                    //powerups.remove(i);
                 }
+
+
+                powerups.clear();
 
                 wave++;
                 finalScore += SCORE;
                 SCORE = 0;
-                powerupsShow = true;
-
+                powerupsShow = false;
 
             }
         }

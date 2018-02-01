@@ -35,7 +35,7 @@ public class GlobalMusic {
         });
     }
 
-    public static void stopGameMhusic() {
+    public static void stopGameMusic() {
         game.stop();
         game.dispose();
     }
