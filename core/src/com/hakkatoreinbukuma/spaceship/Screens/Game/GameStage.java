@@ -29,6 +29,8 @@ import java.util.ArrayList;
 
 public class GameStage extends MyStage {
 
+    float ax = 0, ay = 0;
+    boolean movable = false;
 
     OneSpriteStaticActor bg;
     public Spaceship ship;
@@ -66,16 +68,35 @@ public class GameStage extends MyStage {
         addActor(powerup);
 
         addListener(new DragListener(){
+
             @Override
             public void drag(InputEvent event, float x, float y, int pointer) {
-                ship.setPosition(x - ship.getWidth() / 2, y - ship.getHeight() / 2);
+                /*if(mouse){
+                    lx = x;
+                    ly = y;
+                    mouse = false;
+                } else {
+                    //ship.setPosition(x - ship.getWidth() / 2, y - ship.getHeight() / 2);
+                    ship.setPosition(lx - x, y - ship.getHeight() / 2);
+                }*/
+                ax = x;
+                ay = y;
                 super.drag(event, x, y, pointer);
             }
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                ship.setPosition(x - ship.getWidth() / 2, y - ship.getHeight() / 2);
+                //ship.setPosition(x - ship.getWidth() / 2, y - ship.getHeight() / 2);
+                ax = x;
+                ay = y;
+                movable = true;
                 return super.touchDown(event, x, y, pointer, button);
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                movable = false;
+                super.touchUp(event, x, y, pointer, button);
             }
         });
     }
@@ -151,7 +172,14 @@ public class GameStage extends MyStage {
             System.out.println("End Game");
         }
 
-
+        if((ship.getX() != ax || ship.getY() != ay) && movable) {
+            float dx = ship.getX() - (ax - ship.getWidth() / 2), dy = ship.getY() - (ay - ship.getHeight() / 2);
+            float sensitivity = 5.0f;
+            float aspect = getViewport().getWorldHeight() / getViewport().getWorldWidth();
+            dx = Math.max(Math.min(dx, sensitivity), -sensitivity) * 1.0f/aspect;
+            dy = Math.max(Math.min(dy, sensitivity), -sensitivity);
+            ship.setPosition(ship.getX() - dx, ship.getY() - dy);
+        }
     }
 
     public void removeEnemyFromWorld (Enemy enemy, boolean blowup) {

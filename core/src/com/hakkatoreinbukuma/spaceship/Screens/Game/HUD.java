@@ -26,44 +26,10 @@ import com.hakkatoreinbukuma.spaceship.MyBaseClasses.Scene2D.MyStage;
 import com.hakkatoreinbukuma.spaceship.MyGdxGame;
 
 public class HUD extends MyStage{
-    public ModelBatch modelBatch;
-    public Array<ModelInstance> instances = new Array<ModelInstance>();
-    public Environment environment;
-
-    public PerspectiveCamera cam;
-
     public HUD(Batch batch, MyGdxGame game) {
         super(new ExtendViewport(1024, 576, new OrthographicCamera(1024, 576)), batch, game);
 
-        modelBatch = new ModelBatch();
-        environment = new Environment();
-        environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
-        environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
 
-
-        cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.position.set(10f, 10f, 10f);
-        cam.lookAt(0,0,0);
-        cam.near = 1f;
-        cam.far = 400;
-        cam.update();
-
-        ModelBuilder modelBuilder = new ModelBuilder();
-        ModelInstance shipInstance;
-
-
-        UBJsonReader jsonReader = new UBJsonReader();
-
-        G3dModelLoader modelLoader = new G3dModelLoader(jsonReader);
-
-        Model model = modelLoader.loadModel(Gdx.files.getFileHandle("x-wing.g3db", Files.FileType.Internal));
-
-        /*Model model = modelBuilder.createBox(5f, 5f, 5f,
-                new Material(ColorAttribute.createDiffuse(Color.GREEN)),
-                VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal);*/
-        shipInstance = new ModelInstance(model);
-        shipInstance.transform.scale(1, 1, 1);
-        instances.add(shipInstance);
     }
 
     @Override
@@ -75,20 +41,5 @@ public class HUD extends MyStage{
     public void act(float delta) {
         super.act(delta);
 
-        Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-
-
-        modelBatch.begin(cam);
-        modelBatch.render(instances, environment);
-        modelBatch.end();
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
-
-        modelBatch.dispose();
-        instances.clear();
     }
 }
