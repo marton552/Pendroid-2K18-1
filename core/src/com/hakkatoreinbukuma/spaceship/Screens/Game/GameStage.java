@@ -29,7 +29,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GameStage extends MyStage {
-
+    //ZENE
+    //SDHIELD
+    //POWERUP
+    //ENEMY
     float ax = 0, ay = 0;
     boolean movable = false;
 
@@ -135,7 +138,7 @@ public class GameStage extends MyStage {
 
                         if (enemys.get(e).hp < 0) { // Robbanás animation az Enemyre
                             removeEnemyFromWorld(enemys.get(e), true);
-                            SCORE = SCORE + wave * 5;
+                            SCORE = SCORE + wave * 0.5f;
                         }
                     }
                 }
