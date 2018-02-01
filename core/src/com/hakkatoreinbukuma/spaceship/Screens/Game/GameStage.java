@@ -45,7 +45,9 @@ public class GameStage extends MyStage {
     public static int wave = 1;
     public static float HP = 100;
     public static float ARMOR = 50;
-    public static float SCORE = 0;
+    public static float SCORE = 90;
+
+    public float finalScore = 0;
 
     Random r = new Random();
 
@@ -78,11 +80,11 @@ public class GameStage extends MyStage {
         addActor(ship);
 
         //Test Powerup
-        PowerPowerup powerup = new PowerPowerup(this);
+        /*PowerPowerup powerup = new PowerPowerup(this);
         powerup.addBaseCollisionRectangleShape();
         powerup.setPosition(100, 100);
         powerups.add(powerup);
-        addActor(powerup);
+        addActor(powerup);*/
 
         addListener(new DragListener(){
 
@@ -160,14 +162,14 @@ public class GameStage extends MyStage {
 
                 if (bullet.overlaps(ship)) {
 
-                    float maradek = bullet.damage - ARMOR;
+                    float maradek = ARMOR - bullet.damage;
                     if(ARMOR > 0) {
                         ARMOR = ARMOR - (bullet.damage + (bullet.damage * 0.5f));
                     }
-                    if(maradek > 0)
-                        HP = HP - maradek;
 
-                    System.out.println(bullet.damage);
+                    if (maradek < 0)
+                        HP = HP + maradek;
+
                     removeBulletFromWorld(bullet,false);
 
                 }
@@ -192,16 +194,22 @@ public class GameStage extends MyStage {
                 powerupids[1] = -1;
                 powerupids[2] = -1;
 
+                wave++;
+                finalScore += SCORE;
+                SCORE = 0;
+                powerupsShow = true;
+
                 for (int d = 0; d < powerups.size(); d++) {
                     getActors().removeValue(powerups.get(d), false);
                     powerups.remove(d);
                 }
+
             }
         }
 
         // Új Wave ha meghal mindenki. + ha az idő letellik.
         tick++;
-        if(SCORE < 100) {
+        if(SCORE <= 99) {
             if (enemys.size() <= 0) {
                 nextWave();
                 tick = 0;
@@ -212,6 +220,10 @@ public class GameStage extends MyStage {
             }
         }else{
             // Ha elérte a véget
+            if(powerupsShow == false){
+                System.out.println("Powerups");
+                showPowerups();
+            }
 
         }
         // Ha meghal akkor itt lesz az EndScreen
@@ -247,14 +259,17 @@ public class GameStage extends MyStage {
     public void showPowerups() {
         powerupsShow = true;
         for (int i = 0; i < 3; i++) {
+
             float xOff = 0;
             Powerup p = randomPowerup(i);
             powerups.add(p);
             p.setY(getViewport().getWorldHeight() / 2 - p.getHeight() / 2);
 
-            if(i == 0) xOff = - p.getWidth() - 10;
-            if(i == 0) xOff = - p.getWidth() - 10;
+            if(i == 0) xOff = - p.getWidth() / 2 - 50;
+            if(i == 2) xOff = p.getWidth() / 2 + 50;
 
+            p.setX(getViewport().getWorldWidth() / 2 - p.getWidth() / 2 + xOff);
+            p.addBaseCollisionRectangleShape();
             addActor(p);
         }
     }
