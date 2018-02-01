@@ -23,7 +23,7 @@ import com.hakkatoreinbukuma.spaceship.Screens.Game.GameScreen;
 
 public class MenuStage extends MyStage {
 
-    private OneSpriteStaticActor logoActor = new OneSpriteStaticActor(Assets.manager.get(Assets.EXAMPLE));
+    private OneSpriteStaticActor logoActor = new OneSpriteStaticActor(Assets.manager.get(Assets.LOGO));
 
     float centerXLogo;
     float centerYLogo;
@@ -33,12 +33,12 @@ public class MenuStage extends MyStage {
 
         new MenuBackground(this);
 
-        logoActor.setSize(logoActor.getWidth() / 2, logoActor.getHeight() / 2);
-        logoActor.setPosition(getViewport().getWorldWidth() / 2 - logoActor.getWidth() / 2,
-                              getViewport().getWorldHeight() - logoActor.getHeight() - 60);
-
+        //logoActor.setSize(logoActor.getWidth(), logoActor.getHeight());
         centerXLogo = getViewport().getWorldWidth() / 2 - logoActor.getWidth() / 2;
-        centerYLogo = getViewport().getWorldHeight() - logoActor.getHeight() - 60;
+        centerYLogo = getViewport().getWorldHeight() - logoActor.getHeight() + 50;
+
+        logoActor.setPosition(centerXLogo, centerYLogo);
+
 
         MyButton playButton = new MyButton("Play", game.getButtonStyle());
         playButton.setPosition(getViewport().getWorldWidth() / 2 - playButton.getWidth() / 2, getViewport().getWorldHeight() - 360);
@@ -91,12 +91,12 @@ public class MenuStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
 
-        float x = logoActor.getX() + (Gdx.input.getAccelerometerY()) * delta * 40;
+        float x = centerXLogo + (Gdx.input.getAccelerometerY()) * delta * 40;
         if(x <= centerXLogo + 40 && x > centerXLogo - 40) {
             logoActor.setX(x);
         }
 
-        float y = logoActor.getY() + (((Gdx.input.getAccelerometerX()) * delta * 20) * -1);
+        float y = centerYLogo + (((Gdx.input.getAccelerometerX()) * delta * 20) * -1);
         if(y <= centerYLogo + 20 && y > centerYLogo - 20) {
             logoActor.setY(y);
         }
