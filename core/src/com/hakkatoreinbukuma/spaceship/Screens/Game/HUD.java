@@ -67,24 +67,24 @@ public class HUD extends MyStage{
         update(GameStage.HP, GameStage.ARMOR, GameStage.SCORE);
     }
 
-    public void update(int hp, int shield, int score) {
+    public void update(float hp, float shield, float score) {
         shieldpixmap.setColor(0, 0, 0, 0);
         shieldpixmap.fill();
         shieldpixmap.setColor(0.5f, 0.5f, 0.5f, 0.7f);
         shieldpixmap.drawRectangle(0, 0, 200, 20);
-        shieldpixmap.fillRectangle(0, 0, shield * 2, 20);
+        shieldpixmap.fillRectangle(0, 0, (int)(shield * 2), 20);
 
         hppixmap.setColor(0, 0, 0, 0);
         hppixmap.fill();
         hppixmap.setColor(1, 0, 0, 0.7f);
         hppixmap.drawRectangle(0, 0, 200, 20);
-        hppixmap.fillRectangle(0, 0, hp * 2, 20);
+        hppixmap.fillRectangle(0, 0, (int)(hp * 2), 20);
 
         scorepixmap.setColor(0, 0, 0, 0);
         scorepixmap.fill();
         scorepixmap.setColor(1, 1, 0, 0.7f);
         scorepixmap.drawRectangle(0, 0, 400, 15);
-        scorepixmap.fillRectangle(0, 0, score * 4, 15);
+        scorepixmap.fillRectangle(0, 0, (int)(score * 4), 15);
 
         hptexture = new Texture(hppixmap);
         hpactor.setTexture(hptexture);
