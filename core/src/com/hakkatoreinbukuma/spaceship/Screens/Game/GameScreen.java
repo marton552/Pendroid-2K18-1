@@ -14,7 +14,7 @@ public class GameScreen extends MyScreen {
     public GameScreen(MyGdxGame game) {
         super(game);
         gameStage = new GameStage(spriteBatch, game);
-        //hud = new HUD(spriteBatch, game);
+        hud = new HUD(spriteBatch, game);
 
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(gameStage);
@@ -32,8 +32,8 @@ public class GameScreen extends MyScreen {
         gameStage.act(delta);
         gameStage.draw();
 
-        //hud.act(delta);
-        //hud.draw();
+        hud.act(delta);
+        hud.draw();
     }
 
     @Override
