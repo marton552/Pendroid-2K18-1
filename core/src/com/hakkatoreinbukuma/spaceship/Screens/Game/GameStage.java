@@ -36,9 +36,9 @@ public class GameStage extends MyStage {
     OneSpriteStaticActor bg;
     public Spaceship ship;
     public static int wave = 0;
-    public static int HP = 100;
-    public static int ARMOR = 0;
-    public static int SCORE = 0;
+    public static float HP = 100;
+    public static float ARMOR = 0;
+    public static float SCORE = 0;
     int enemyBulletDamage = 1;
 
     Random r = new Random();
@@ -132,8 +132,10 @@ public class GameStage extends MyStage {
                         getActors().removeValue(bullet, false);
                         friendlyBullets.remove(i);
 
+
                         if (enemys.get(e).hp < 0) { // Robbanás animation az Enemyre
                             removeEnemyFromWorld(enemys.get(e), true);
+                            SCORE = SCORE + wave * 5;
                         }
                     }
                 }
@@ -174,7 +176,7 @@ public class GameStage extends MyStage {
 
         // Új Wave ha meghal mindenki (Ezt majd csere.)
         tick++;
-        if(SCORE >= 100) {
+        if(SCORE < 100) {
             if (enemys.size() <= 0) {
                 nextWave();
                 tick = 0;
@@ -190,7 +192,8 @@ public class GameStage extends MyStage {
         }
 
         if((ship.getX() != ax || ship.getY() != ay) && movable) {
-            float dx = ship.getX() - (ax - ship.getWidth() / 2), dy = ship.getY() - (ay - ship.getHeight() / 2);
+            float dx = ship.getX() - (ax - ship.getWidth() / 2),
+                    dy = ship.getY() - (ay - ship.getHeight() / 2);
             float sensitivity = 5.0f;
             float aspect = getViewport().getWorldHeight() / getViewport().getWorldWidth();
             dx = Math.max(Math.min(dx, sensitivity), -sensitivity) * 1.0f/aspect;
