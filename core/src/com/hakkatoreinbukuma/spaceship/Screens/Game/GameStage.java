@@ -34,9 +34,10 @@ public class GameStage extends MyStage {
 
     OneSpriteStaticActor bg;
     public Spaceship ship;
-    int wave = 0;
-    int HP = 100;
-    int ARMOR = 0;
+    public int wave = 0;
+    public int HP = 100;
+    public int ARMOR = 0;
+    public int SCORE = 0;
     int enemyBulletDamage = 1;
 
     ArrayList<Enemy> enemys = new ArrayList<Enemy>();

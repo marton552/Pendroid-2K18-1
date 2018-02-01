@@ -62,7 +62,7 @@ public class Assets {
 	public static final AssetDescriptor<Texture> SLIDER_KNOB = new AssetDescriptor<Texture>("ui_textures/sliderknob.png", Texture.class);
 	public static final AssetDescriptor<Texture> SLIDER_KNOBH = new AssetDescriptor<Texture>("ui_textures/sliderknob2.png", Texture.class);
 
-	public static final AssetDescriptor<Texture> EXAMPLE = new AssetDescriptor<Texture>("example.png", Texture.class);
+	public static final AssetDescriptor<Texture> LOGO = new AssetDescriptor<Texture>("logo.png", Texture.class);
 
 	//Backgrounds
 	public static final AssetDescriptor<Texture> BG_1 = new AssetDescriptor<Texture>("bg.jpg", Texture.class);
@@ -108,7 +108,7 @@ public class Assets {
 		manager.load(SLIDER_KNOB);
 		manager.load(SLIDER_KNOBH);
 
-		manager.load(EXAMPLE);
+		manager.load(LOGO);
 
 		manager.load(BG_1);
 
