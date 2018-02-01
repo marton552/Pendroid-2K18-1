@@ -76,10 +76,23 @@ public class Assets {
 	public static final AssetDescriptor<Texture> SPACESHIP = new AssetDescriptor<Texture>("spaceship.png", Texture.class);
 
 	//Enemy
-	public static final AssetDescriptor<Texture> ENEMY_1 = new AssetDescriptor<Texture>("enemy1.png", Texture.class);
+	public static final AssetDescriptor<Texture> ENEMY_1 = new AssetDescriptor<Texture>("enemys/enemy1.png", Texture.class);
+	public static final AssetDescriptor<Texture> ENEMY_2 = new AssetDescriptor<Texture>("enemys/enemy2.png", Texture.class);
+	public static final AssetDescriptor<Texture> ENEMY_3 = new AssetDescriptor<Texture>("enemys/enemy3.png", Texture.class);
+	public static final AssetDescriptor<Texture> ENEMY_4 = new AssetDescriptor<Texture>("enemys/enemy4.png", Texture.class);
 
 	//Powerups
 	public static final AssetDescriptor<Texture> POWER_POWERUP = new AssetDescriptor<Texture>("powerup/firepowerpick.png", Texture.class);
+	public static final AssetDescriptor<Texture> FIRESPEED_POWERUP = new AssetDescriptor<Texture>("powerup/firespeedpick.png", Texture.class);
+
+
+	//Music
+	public static final AssetDescriptor<Music> MENU_MUSIC = new AssetDescriptor<Music>("music/menu.ogg", Music.class);
+	public static final AssetDescriptor<Music> MUSIC_1 = new AssetDescriptor<Music>("music/1.ogg", Music.class);
+	public static final AssetDescriptor<Music> MUSIC_2 = new AssetDescriptor<Music>("music/2.ogg", Music.class);
+	public static final AssetDescriptor<Music> MUSIC_3 = new AssetDescriptor<Music>("music/3.ogg", Music.class);
+	public static final AssetDescriptor<Sound> PEW_SOUND = new AssetDescriptor<Sound>("music/pew.ogg", Sound.class);
+
 
 
 	public static void prepare() {
@@ -117,8 +130,18 @@ public class Assets {
 		manager.load(SPACESHIP);
 
 		manager.load(ENEMY_1);
+		manager.load(ENEMY_2);
+		manager.load(ENEMY_3);
+		manager.load(ENEMY_4);
 
 		manager.load(POWER_POWERUP);
+		manager.load(FIRESPEED_POWERUP);
+
+		manager.load(MENU_MUSIC);
+		manager.load(MUSIC_1);
+		manager.load(MUSIC_2);
+		manager.load(MUSIC_3);
+		manager.load(PEW_SOUND);
 
 		manager.load(ALEGREYAREGULAR_FONT);
 

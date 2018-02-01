@@ -1,12 +1,14 @@
 package com.hakkatoreinbukuma.spaceship.Screens.Menu;
 
+import com.hakkatoreinbukuma.spaceship.MyBaseClasses.Scene2D.MyStage;
+
 import java.util.Random;
 
 public class MenuBackground{
-    MenuStage stage;
+    MyStage stage;
     Random r = new Random();
 
-    public MenuBackground(MenuStage stage) {
+    public MenuBackground(MyStage stage) {
         this.stage = stage;
 
         Star temp;

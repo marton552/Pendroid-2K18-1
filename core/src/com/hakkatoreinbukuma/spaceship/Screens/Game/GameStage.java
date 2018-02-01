@@ -38,16 +38,15 @@ public class GameStage extends MyStage {
 
     OneSpriteStaticActor bg;
     public Spaceship ship;
-    public static int wave = 0;
+    public static int wave = 1;
     public static float HP = 100;
     public static float ARMOR = 0;
     public static float SCORE = 0;
-    int enemyBulletDamage = 1;
 
     Random r = new Random();
 
     int tick = 0;
-    int nextWaveTick = r.nextInt(300) + 300;
+    int nextWaveTick;
 
 
     ArrayList<Enemy> enemys = new ArrayList<Enemy>();
@@ -101,12 +100,14 @@ public class GameStage extends MyStage {
                 ax = x;
                 ay = y;
                 movable = true;
+                ship.canShoot = true;
                 return super.touchDown(event, x, y, pointer, button);
             }
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 movable = false;
+                ship.canShoot = false;
                 super.touchUp(event, x, y, pointer, button);
             }
         });
@@ -138,7 +139,7 @@ public class GameStage extends MyStage {
 
                         if (enemys.get(e).hp < 0) { // Robbanás animation az Enemyre
                             removeEnemyFromWorld(enemys.get(e), true);
-                            SCORE = SCORE + wave * 0.5f;
+                            SCORE = SCORE + 2.5f;
                         }
                     }
                 }
@@ -152,9 +153,10 @@ public class GameStage extends MyStage {
 
                 if (bullet.overlaps(ship)) {
 
+                    HP = HP - bullet.damage;
+                    System.out.println(bullet.damage);
                     removeBulletFromWorld(bullet,false);
 
-                    HP = HP - enemyBulletDamage;
                 }
             }
         }
@@ -177,7 +179,7 @@ public class GameStage extends MyStage {
             }
         }
 
-        // Új Wave ha meghal mindenki (Ezt majd csere.)
+        // Új Wave ha meghal mindenki. + ha az idő letellik.
         tick++;
         if(SCORE < 100) {
             if (enemys.size() <= 0) {
@@ -188,6 +190,9 @@ public class GameStage extends MyStage {
                 tick = 0;
                 nextWave();
             }
+        }else{
+            // Ha elérte a véget
+
         }
         // Ha meghal akkor itt lesz az EndScreen
         if(HP <= 0){
@@ -220,13 +225,45 @@ public class GameStage extends MyStage {
     }
 
     public void nextWave(){
-        wave++;
-        int rEnemy = r.nextInt(4)+ 1;
-        if(rEnemy == 1 || rEnemy == 2){
+        //wave++;
+        nextWaveTick = r.nextInt(200) + 200;
+        int rEnemy = r.nextInt(4)+ 1; // 5 wave fajta
+        //rEnemy = 2;
+        if(rEnemy == 1){
             for (int i = 0; i < 5; i++) {
-                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_1), 1, 15 * wave, true, 80, this);
+                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_1), 1, 15 * Math.round(wave *0.5), true, false, 80, 2, 25, this);
                 enemys.add(temp);
                 temp.setX(150 + 100 * (i + 1));
+
+                temp.addBaseCollisionRectangleShape();
+                addActor(temp);
+            }
+        }else if(rEnemy == 2) {
+            for (int i = 0; i < 3; i++) {
+                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_2), 0.7f, 20 * Math.round(wave *0.5), true, false, 200, 8, 6, this);
+                enemys.add(temp);
+                temp.setRotation(180);
+                temp.setX(300 + 100 * (i + 1));
+
+                temp.addBaseCollisionRectangleShape();
+                addActor(temp);
+            }
+        }else if(rEnemy == 3) {
+            for (int i = 0; i < 3; i++) {
+                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_3), 5, 10 * Math.round(wave *0.5), false, false,0, 0, 5, this);
+                enemys.add(temp);
+                temp.setRotation(180);
+                temp.setX(300 + 100 * (i + 1));
+
+                temp.addBaseCollisionRectangleShape();
+                addActor(temp);
+            }
+        }else if(rEnemy == 4) {
+            for (int i = 0; i < 4; i++) {
+                Enemy temp = new Enemy(Assets.manager.get(Assets.ENEMY_4), 0.8f, 15 * Math.round(wave *0.5), true, true, 150, 2, 4, this);
+                enemys.add(temp);
+                temp.setRotation(180);
+                temp.setX(200 * (i + 1));
 
                 temp.addBaseCollisionRectangleShape();
                 addActor(temp);
@@ -237,8 +274,8 @@ public class GameStage extends MyStage {
     public void removeBulletFromWorld(Bullet bullet, boolean friendly) {
         getActors().removeValue(bullet, false);
 
-        if(friendly) friendlyBullets.remove(friendlyBullets.indexOf(bullet));
-            else enemyBullets.remove(enemyBullets.indexOf(bullet));
+        if(friendly) friendlyBullets.remove(bullet);
+            else enemyBullets.remove(bullet);
     }
 
 
@@ -246,7 +283,7 @@ public class GameStage extends MyStage {
     public void fireBullet(OneSpriteStaticActor ship, int bulletSpeed, boolean friendly){
         for(int i = 0; i < 2; i++) {
 
-            Bullet bullet = new Bullet(0, bulletSpeed, friendly,this);
+            Bullet bullet = new Bullet(0, bulletSpeed, friendly, ship.damage, this);
 
             if(friendly) friendlyBullets.add(bullet);
             else enemyBullets.add(bullet);

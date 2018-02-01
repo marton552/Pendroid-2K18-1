@@ -14,7 +14,7 @@ public class TitleScreen extends MyScreen{
         super(game);
         title.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         title.setLooping(false);
-        title.setFps(20);
+        title.setFps(10);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.hakkatoreinbukuma.spaceship.Screens.Menu;
 import com.badlogic.gdx.Gdx;
 import com.hakkatoreinbukuma.spaceship.MyBaseClasses.Scene2D.MyScreen;
 import com.hakkatoreinbukuma.spaceship.MyGdxGame;
+import com.hakkatoreinbukuma.spaceship.Screens.Game.GlobalMusic;
 
 public class MenuScreen extends MyScreen{
 
@@ -13,6 +14,8 @@ public class MenuScreen extends MyScreen{
         //setBackGroundColor(1, 1, 1);
         menuStage = new MenuStage(spriteBatch, game);
         Gdx.input.setInputProcessor(menuStage);
+
+        GlobalMusic.startMenuMusic();
 
     }
 

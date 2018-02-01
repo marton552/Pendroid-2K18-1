@@ -9,27 +9,30 @@ public class Enemy extends OneSpriteStaticActor{
     GameStage stage;
     Random r = new Random();
 
-    int speed;
-    int hp;
+    float speed;
+    long hp;
 
     boolean canShoot;
+    boolean doubleShot;
     int shootSpeed;
+    boolean firstBullet = false;
 
     int tick = 0;
 
-    public Enemy(Texture texture, int speed, int hp, boolean canShoot, int shootSpeed, GameStage stage) {
+    public Enemy(Texture texture, float speed, long hp, boolean canShoot, boolean doubleShot, int shootSpeed, float damage, int ratio, GameStage stage) {
         super(texture);
 
         this.speed = speed;
         this.hp = hp;
 
         this.canShoot = canShoot;
+        this.doubleShot = doubleShot;
         this.shootSpeed = shootSpeed;
-
+        this.damage = damage;
         this.stage = stage;
 
 
-        setSize(getWidth() / 25, getHeight() / 25);
+        setSize(getWidth() / ratio, getHeight() / ratio);
         setY(stage.getViewport().getWorldHeight() + getHeight()  /2);
     }
 
@@ -41,8 +44,23 @@ public class Enemy extends OneSpriteStaticActor{
         if(canShoot) {
             tick++;
             if(tick >= shootSpeed) {
-                tick = 0;
-                stage.fireBullet(this, -5,false);
+                if(doubleShot){
+                    if(firstBullet == false){
+                        stage.fireBullet(this, -5,false);
+                        firstBullet = true;
+                        System.out.println("Első lövés");
+                    }
+                    if (tick >= shootSpeed + 10){
+                        System.out.println("Második lövés");
+
+                        stage.fireBullet(this, -5,false);
+                        firstBullet = false;
+                        tick = 0;
+                    }
+                }else{
+                    tick = 0;
+                    stage.fireBullet(this, -5,false);
+                }
             }
         }
 

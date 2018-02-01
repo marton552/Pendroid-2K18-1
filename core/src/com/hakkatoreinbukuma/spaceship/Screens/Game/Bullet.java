@@ -11,12 +11,13 @@ public class Bullet extends OneSpriteStaticActor {
     boolean friendly;
     GameStage stage;
 
-    public Bullet(float velX, float velY, boolean friendly, GameStage stage) {
+    public Bullet(float velX, float velY, boolean friendly, float damage, GameStage stage) {
         super(Assets.manager.get(Assets.FULLWHITE_TEXTURE));
 
         this.velX = velX;
         this.velY = velY;
         this.friendly = friendly;
+        this.damage = damage;
         this.stage = stage;
 
         setSize(4, 20);

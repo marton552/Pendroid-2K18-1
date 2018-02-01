@@ -18,10 +18,12 @@ public class GameScreen extends MyScreen {
 
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(gameStage);
-        //inputMultiplexer.addProcessor(hud);
+        inputMultiplexer.addProcessor(hud);
 
         Gdx.input.setInputProcessor(inputMultiplexer);
 
+        GlobalMusic.stopMenuMusic();
+        GlobalMusic.playGameMusic();
 
     }
 
