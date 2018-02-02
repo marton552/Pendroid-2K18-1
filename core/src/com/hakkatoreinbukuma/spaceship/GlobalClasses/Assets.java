@@ -80,7 +80,7 @@ public class Assets {
 	public static final AssetDescriptor<Texture> ENEMY_1 = new AssetDescriptor<Texture>("enemys/enemy1.png", Texture.class);
 	public static final AssetDescriptor<Texture> ENEMY_2 = new AssetDescriptor<Texture>("enemys/enemy2.png", Texture.class);
 	public static final AssetDescriptor<Texture> ENEMY_3 = new AssetDescriptor<Texture>("enemys/enemy3.png", Texture.class);
-	public static final AssetDescriptor<Texture> ENEMY_4 = new AssetDescriptor<Texture>("enemys/enemy4.png", Texture.class);
+	public static final AssetDescriptor<Texture> ENEMY_4 = new AssetDescriptor<Texture>("enemys/enemykocsog.png", Texture.class);
 
 	//Powerups
 	public static final AssetDescriptor<Texture> POWER_POWERUP = new AssetDescriptor<Texture>("powerup/firepowerpick.png", Texture.class);
