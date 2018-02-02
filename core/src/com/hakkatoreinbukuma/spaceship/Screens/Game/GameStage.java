@@ -79,6 +79,12 @@ public class GameStage extends MyStage {
 
         this.hud = hud;
 
+        finalScore = 0;
+        wave = 1;
+        HP = 100;
+        ARMOR = 0;
+        SCORE = 0;
+
         nextWave();
 
         ship = new Spaceship(this);
